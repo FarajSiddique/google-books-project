@@ -1,0 +1,7 @@
+.custom-card-text {
+	text-align: center;
+	font-size: 18px;
+	line-height: 1.75;
+	color: #333; /* Custom color */
+	margin-bottom: 20px;
+}

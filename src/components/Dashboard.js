@@ -1,39 +1,48 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Card, Button, Alert } from "react-bootstrap";
-import { useAuth } from "../contexts/AuthContext";
+import { searchBooks } from "./GoogleBooks";
+
+import Navbar from "./navbar";
+import Carousel from "./Carousel";
 
 export default function Dashboard() {
-	const [error, setError] = useState("");
-	const { currentUser, logout } = useAuth();
-	const navigate = useNavigate();
+	const [query, setQuery] = useState("");
+	const [books, setBooks] = useState([]);
 
-	async function handleLogout() {
-		setError("");
+	const handleSearch = async () => {
 		try {
-			await logout();
-			navigate("/login");
-		} catch {
-			setError("Failed to log out");
+			const data = await searchBooks(query);
+			setBooks(data.items);
+		} catch (error) {
+			console.error("Error fetching books", error);
 		}
-	}
+	};
 
 	return (
 		<>
-			<Card>
-				<Card.Body>
-					<h2 className="text-center mb-4">Profile</h2>
-					{error && <Alert variant="danger">{error}</Alert>}
-					<strong>Email: </strong> {currentUser.email}
-					<Link to="/update-profile" className="btn btn-primary w-100 mt-3">
-						Update Profile
-					</Link>
-				</Card.Body>
-			</Card>
-			<div className="w-100 text-center mt-2">
-				<Button variant="link" onClick={handleLogout}>
-					Log Out
-				</Button>
+			<Navbar></Navbar>
+			<Carousel></Carousel>
+
+			<div>
+				<input
+					type="text"
+					value={query}
+					onChange={(e) => setQuery(e.target.value)}
+					placeholder="Search for books..."
+				/>
+				<button onClick={handleSearch}>Search</button>
+
+				<ul>
+					{books.map((book) => (
+						<li key={book.id}>
+							<h3>{book.volumeInfo.title}</h3>
+							<p>{book.volumeInfo.description}</p>
+							<img
+								src={book.volumeInfo.imageLinks.smallThumbnail}
+								alt="Book"
+							></img>
+						</li>
+					))}
+				</ul>
 			</div>
 		</>
 	);
