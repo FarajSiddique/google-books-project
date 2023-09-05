@@ -12,15 +12,28 @@ import {
 	MDBIcon,
 	MDBInputGroup,
 } from "mdb-react-ui-kit";
+import { useNavigate } from "react-router-dom";
 
 export default function App() {
 	const [showNavNoTogglerThird, setShowNavNoTogglerThird] = useState(false);
+	const [query, setQuery] = useState("");
+	const navigate = useNavigate();
+
+	const handleInputChange = (event) => {
+		setQuery(event.target.value);
+	};
+
+	const handleSearch = (event) => {
+		event.preventDefault();
+		navigate(`/search/${query}`);
+	};
 
 	return (
 		<>
 			<MDBNavbar expand="lg" light style={{ backgroundColor: "#EAC696" }}>
 				<MDBContainer fluid>
 					<MDBNavbarToggler
+						style={{ backgroundColor: "#fff" }}
 						type="button"
 						data-target="#navbarTogglerDemo03"
 						aria-controls="navbarTogglerDemo03"
@@ -42,14 +55,29 @@ export default function App() {
 								<MDBNavbarLink href="/bookshelf">Bookshelf</MDBNavbarLink>
 							</MDBNavbarItem>
 						</MDBNavbarNav>
-						<MDBInputGroup tag="form" className="d-flex w-auto">
+						<MDBInputGroup
+							tag="form"
+							className="d-flex w-auto"
+							onSubmit={handleSearch}
+						>
 							<input
 								className="form-control"
-								placeholder="Type query"
+								placeholder="Search for books"
 								aria-label="Search"
 								type="Search"
+								value={query}
+								onChange={handleInputChange}
 							/>
-							<MDBBtn outline>Search</MDBBtn>
+							<MDBBtn
+								type="submit"
+								style={{
+									backgroundColor: "#65451F",
+									color: "#fff",
+									border: "#fff",
+								}}
+							>
+								Search
+							</MDBBtn>
 						</MDBInputGroup>
 					</MDBCollapse>
 				</MDBContainer>

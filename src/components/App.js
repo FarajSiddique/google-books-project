@@ -9,6 +9,9 @@ import ForgotPassword from "./ForgotPassword";
 import UpdateProfile from "./UpdateProfile";
 import UserProfile from "./UserProfile";
 import Bookshelf from "./Bookshelf";
+import SearchResultPage from "./SearchResultsPage";
+import BookDetail from "./BookDetail";
+import BookDetailNYT from "./BookDetailNYT";
 
 function App() {
 	return (
@@ -51,6 +54,9 @@ function App() {
 					<Route path="/signup" Component={Signup} />
 					<Route path="/login" Component={Login} />
 					<Route path="/forgot-password" Component={ForgotPassword} />
+					<Route path="/search/:query" Component={SearchResultPage} />
+					<Route path="/book/:id" Component={BookDetail} />
+					<Route path="/book_nyt/:isbn" Component={BookDetailNYT} />
 				</Routes>
 			</AuthProvider>
 		</Router>

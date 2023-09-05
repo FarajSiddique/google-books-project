@@ -1,48 +1,23 @@
-import React, { useState } from "react";
-import { searchBooks } from "./GoogleBooks";
-
+import React from "react";
 import Navbar from "./navbar";
-import Carousel from "./Carousel";
+import FictionCarousel from "./Carousels/FictionCarousel";
+import NonFictionCarousel from "./Carousels/NonFictionCarousel";
+import { Container } from "react-bootstrap";
 
 export default function Dashboard() {
-	const [query, setQuery] = useState("");
-	const [books, setBooks] = useState([]);
-
-	const handleSearch = async () => {
-		try {
-			const data = await searchBooks(query);
-			setBooks(data.items);
-		} catch (error) {
-			console.error("Error fetching books", error);
-		}
-	};
-
 	return (
 		<>
 			<Navbar></Navbar>
-			<Carousel></Carousel>
 
-			<div>
-				<input
-					type="text"
-					value={query}
-					onChange={(e) => setQuery(e.target.value)}
-					placeholder="Search for books..."
-				/>
-				<button onClick={handleSearch}>Search</button>
-
-				<ul>
-					{books.map((book) => (
-						<li key={book.id}>
-							<h3>{book.volumeInfo.title}</h3>
-							<p>{book.volumeInfo.description}</p>
-							<img
-								src={book.volumeInfo.imageLinks.smallThumbnail}
-								alt="Book"
-							></img>
-						</li>
-					))}
-				</ul>
+			<div style={{ backgroundColor: "#C8AE7D", padding: "2rem" }}>
+				<h2 style={{ padding: "2rem" }}>Best Selling Fiction Books!</h2>
+				<Container>
+					<FictionCarousel></FictionCarousel>
+				</Container>
+				<h2>Best Selling Nonfiction Books!</h2>
+				<Container>
+					<NonFictionCarousel></NonFictionCarousel>
+				</Container>
 			</div>
 		</>
 	);

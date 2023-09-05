@@ -1,0 +1,44 @@
+.fixed-height-card-nyt {
+	height: 450px;
+	display: flex;
+	flex-direction: column;
+	border: none;
+	cursor: pointer;
+	transition: transform 0.2s, box-shadow 0.3s;
+	text-decoration: none;
+	background-color: #f7f2e7; /* Light background */
+	margin: 0 2rem;
+	border-radius: 10px; /* Rounded corners */
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Subtle shadow for depth */
+	padding: 1rem; /* Padding around content */
+}
+
+.fixed-height-card-nyt:hover {
+	transform: scale(1.03); /* Subtle scale on hover */
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); /* Slightly pronounced shadow on hover */
+}
+
+.card-image-nyt {
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	width: 100%;
+	max-height: 300px;
+	object-fit: contain;
+	transition: opacity 0.2s;
+	border: 2px solid #e9e2d7; /* Image border */
+}
+
+.fixed-height-card-nyt:hover .card-image-nyt {
+	opacity: 0.95;
+}
+
+.card-title-nyt {
+	text-align: center;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	max-width: 100%;
+	color: #4b4b4b; /* Darker text color for better contrast */
+	font-size: 1.2rem; /* Slightly larger text */
+	margin-top: 10px; /* Space between title and image */
+}
