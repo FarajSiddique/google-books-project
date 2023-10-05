@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 import { fetchBookDetailsByISBN } from "./GoogleBooks";
 import NavbarComponent from "./navbar"; // renamed to avoid conflict with React-Bootstrap's Navbar
 import { Container, Row, Col, Card, Spinner } from "react-bootstrap";
+import { useAuth } from "../contexts/AuthContext";
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const BookDetailNYT = () => {
 	const { isbn } = useParams();
@@ -17,6 +20,52 @@ const BookDetailNYT = () => {
 
 		fetchBookDetail();
 	}, [isbn]);
+
+	const { currentUser } = useAuth(); // Get the current user from UseAuth context
+
+	const handleAddToBookshelf = async () => {
+		try {
+			if (!currentUser) {
+				throw new Error("You must be logged in to add books to your bookshelf");
+			}
+
+			const isbn = book.volumeInfo.industryIdentifiers[1].identifier;
+
+			const response = await fetch(`${BACKEND_URL}/api/bookshelf/add`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					userId: currentUser.uid,
+					isbn: isbn,
+				}),
+			});
+
+			// Check if the response is OK
+			if (!response.ok) {
+				const textResponse = await response.text();
+				try {
+					// Try to parse the text response as JSON
+					const responseData = JSON.parse(textResponse);
+					throw new Error(
+						responseData.message || "Failed to add book to bookshelf"
+					);
+				} catch (jsonError) {
+					// If parsing as JSON fails, log the text response
+					console.error("Server response:", textResponse);
+					throw new Error(
+						"Failed to add book to bookshelf, and couldn't parse server response"
+					);
+				}
+			}
+
+			alert("Book added to bookshelf successfully!");
+		} catch (error) {
+			console.error(error);
+			alert(error.message);
+		}
+	};
 
 	if (!book)
 		return (
@@ -49,6 +98,11 @@ const BookDetailNYT = () => {
 									<a href={book.volumeInfo.canonicalVolumeLink}>
 										Get this Book!
 									</a>
+								</Card.Text>
+								<Card.Text>
+									<button onClick={handleAddToBookshelf}>
+										Add to Bookshelf!
+									</button>
 								</Card.Text>
 							</Card.Body>
 						</Card>
