@@ -12,6 +12,7 @@ const BookDetail = () => {
 		const fetchBookDetail = async () => {
 			const data = await getBookDetail(id);
 			setBook(data);
+			console.log(data);
 		};
 
 		fetchBookDetail();
@@ -21,7 +22,7 @@ const BookDetail = () => {
 		return (
 			<Container className="text-center mt-5">
 				<Spinner animation="border" role="status">
-					<span className="sr-only">Loading...</span>
+					<span className="sr-only"></span>
 				</Spinner>
 			</Container>
 		);
@@ -34,17 +35,18 @@ const BookDetail = () => {
 					<Col md={4}>
 						<Card.Img
 							variant="top"
-							src={book.volumeInfo.imageLinks?.thumbnail}
+							src={book.volumeInfo.imageLinks?.medium}
 							alt={book.volumeInfo.title}
 						/>
 					</Col>
 					<Col md={8}>
 						<Card>
-							<Card.Body>
-								<Card.Title>{book.volumeInfo.title}</Card.Title>
-								<Card.Text>{book.volumeInfo.description}</Card.Text>
-								{/* Add more book details as needed */}
-							</Card.Body>
+							<Card.Title>{book.volumeInfo.title}</Card.Title>
+							<Card.Text>{book.volumeInfo.authors}</Card.Text>
+							<Card.Text>{book.volumeInfo.description}</Card.Text>
+							<Card.Text>
+								<a href={book.volumeInfo.canonicalVolumeLink}>Get this Book!</a>
+							</Card.Text>
 						</Card>
 					</Col>
 				</Row>

@@ -14,6 +14,7 @@ const SearchResultPage = () => {
 			try {
 				const data = await searchBooks(query);
 				setBooks(data.items);
+				console.log(data);
 			} catch (error) {
 				console.error("Error fetching books", error);
 			}
@@ -38,7 +39,7 @@ const SearchResultPage = () => {
 								>
 									<Card.Img
 										variant="top"
-										src={book.volumeInfo.imageLinks.smallThumbnail}
+										src={book.volumeInfo.imageLinks.thumbnail}
 										className="card-image"
 									/>
 									<Card.Body>

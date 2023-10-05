@@ -22,7 +22,7 @@ const BookDetailNYT = () => {
 		return (
 			<Container className="text-center mt-5">
 				<Spinner animation="border" role="status">
-					<span className="sr-only">Loading...</span>
+					<span className="sr-only"></span>
 				</Spinner>
 			</Container>
 		);
@@ -43,8 +43,13 @@ const BookDetailNYT = () => {
 						<Card>
 							<Card.Body>
 								<Card.Title>{book.volumeInfo.title}</Card.Title>
+								<Card.Text>{book.volumeInfo.authors}</Card.Text>
 								<Card.Text>{book.volumeInfo.description}</Card.Text>
-								{/* Add more book details as needed */}
+								<Card.Text>
+									<a href={book.volumeInfo.canonicalVolumeLink}>
+										Get this Book!
+									</a>
+								</Card.Text>
 							</Card.Body>
 						</Card>
 					</Col>

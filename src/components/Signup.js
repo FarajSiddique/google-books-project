@@ -11,10 +11,13 @@ import {
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
 export default function Signup() {
 	const emailRef = useRef();
 	const passwordRef = useRef();
 	const passwordConfirmRef = useRef();
+	const usernameRef = useRef();
 	const { signup } = useAuth();
 	const [error, setError] = useState();
 	const [loading, setLoading] = useState(false);
@@ -22,19 +25,46 @@ export default function Signup() {
 
 	async function handleSubmit(e) {
 		e.preventDefault();
+
 		if (passwordRef.current.value !== passwordConfirmRef.current.value) {
 			return setError("Passwords do not match");
 		}
+
 		try {
 			setError("");
 			setLoading(true);
-			await signup(emailRef.current.value, passwordRef.current.value);
-			history("/");
-		} catch {
-			setError("Failed to create an account");
-		}
 
-		setLoading(false);
+			// First, sign up the user using Firebase
+			await signup(emailRef.current.value, passwordRef.current.value);
+
+			// Then, send a POST request to your backend to store additional user data
+			const response = await fetch(`${BACKEND_URL}/api/users/signup`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					email: emailRef.current.value,
+					username: usernameRef.current.value,
+				}),
+			});
+
+			// Check if the response from your backend is ok (status code 200-299)
+			if (!response.ok) {
+				throw new Error("Failed to register user in backend");
+			}
+
+			const data = await response.json();
+			if (data.error) {
+				throw new Error(data.error);
+			}
+
+			history("/");
+		} catch (error) {
+			setError(error.message || "Failed to create an account");
+		} finally {
+			setLoading(false);
+		}
 	}
 
 	return (
@@ -79,6 +109,14 @@ export default function Signup() {
 											<Form.Group id="email" className="mb-3">
 												<Form.Label>Email</Form.Label>
 												<Form.Control type="email" ref={emailRef} required />
+											</Form.Group>
+											<Form.Group id="username" className="mb-3">
+												<Form.Label>Username</Form.Label>
+												<Form.Control
+													type="username"
+													ref={usernameRef}
+													required
+												/>
 											</Form.Group>
 											<Form.Group id="password" className="mb-3">
 												<Form.Label>Password</Form.Label>
