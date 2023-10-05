@@ -35,7 +35,11 @@ export default function Signup() {
 			setLoading(true);
 
 			// First, sign up the user using Firebase
-			await signup(emailRef.current.value, passwordRef.current.value);
+			const userCredential = await signup(
+				emailRef.current.value,
+				passwordRef.current.value
+			);
+			const firebaseUser = userCredential.user;
 
 			// Then, send a POST request to your backend to store additional user data
 			const response = await fetch(`${BACKEND_URL}/api/users/signup`, {
@@ -46,12 +50,16 @@ export default function Signup() {
 				body: JSON.stringify({
 					email: emailRef.current.value,
 					username: usernameRef.current.value,
+					firebaseUid: firebaseUser.uid,
 				}),
 			});
 
-			// Check if the response from your backend is ok (status code 200-299)
+			// Check if the response from the backend is ok (status code 200-299)
 			if (!response.ok) {
-				throw new Error("Failed to register user in backend");
+				const responseData = await response.json();
+				throw new Error(
+					responseData.message || "Failed to register user in backend"
+				);
 			}
 
 			const data = await response.json();
