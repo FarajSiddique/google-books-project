@@ -2,6 +2,9 @@
 
 This project is a web application that integrates with the Google Books API and New York Times API and provides users with an experience with searching and sharing books with friends.
 
+[BookBuddy Backend](https://github.com/FarajSiddique/google-books-project-backend)
+
+
 ## Features
 
 - **Google Books Integration**: Search for books using the Google Books API and view detailed information about each book.
