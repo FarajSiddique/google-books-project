@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# BookBuddy Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a web application that integrates with the Google Books API and New York Times API and provides users with an experience with searching and sharing books with friends.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Google Books Integration**: Search for books using the Google Books API and view detailed information about each book.
+- **New York Times Bestsellers**: View a list of bestsellers from the New York Times.
+- **User Authentication**: Sign up, log in, and manage your profile. Forgot your password? No worries, reset it with ease.
+- **User Dashboard**: Once logged in, users can view their dashboard with personalized content.
+- **Private Routes**: Some routes are protected and only accessible to authenticated users.
+- **User Profile Management**: Update your profile information and view your personal details.
+- **Bookshelf**: Each user has their own customizable bookshelf, with the capability of sharing books with friends as well. 
+  
+## Components
 
-### `npm start`
+- `App.js`: Main application component.
+- `BookDetail.js`: Component to display detailed information about a book.
+- `BookDetailNYT.js`: Component to display details of a New York Times bestseller.
+- `Bookshelf.js`: Component to manage and display a user's bookshelf.
+- `Dashboard.js`: User's main dashboard.
+- `ForgotPassword.js`: Component to assist users in resetting their password.
+- `GoogleBooks.js`: Component to search and display results from the Google Books API.
+- `Login.js`: User login component.
+- `NYTBooks.js`: Component to display a list of New York Times bestsellers.
+- `PrivateRoute.js`: Component to handle private routes accessible only to authenticated users.
+- `Signup.js`: User signup component.
+- `UpdateProfile.js`: Component to update user profile details.
+- `UserProfile.js`: Component to display user profile information.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Contexts
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- `AuthContext.js`: Provides authentication-related functionalities and states.
 
-### `npm test`
+## Firebase Integration
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The application uses Firebase for user authentication. The configuration and initialization can be found in `firebase.js`.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
