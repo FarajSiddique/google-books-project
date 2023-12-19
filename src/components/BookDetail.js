@@ -35,7 +35,7 @@ const BookDetail = () => {
 					<Col md={4}>
 						<Card.Img
 							variant="top"
-							src={book.volumeInfo.imageLinks?.medium}
+							src={book.volumeInfo.imageLinks?.coverImage}
 							alt={book.volumeInfo.title}
 						/>
 					</Col>

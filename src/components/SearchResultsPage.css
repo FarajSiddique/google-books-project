@@ -1,5 +1,10 @@
 body {
 	font-family: "Arial", sans-serif;
+	background-color: #c8ae7d;
+}
+
+html {
+	background-color: #c8ae7d;
 }
 
 .search-body {
