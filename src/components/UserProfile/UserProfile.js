@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Card, Button, Alert } from "react-bootstrap";
+import { Row, Button, Alert, Col } from "react-bootstrap";
 import { useAuth } from "../../contexts/AuthContext";
 import Navbar from "../navbar/navbar";
+import "./UserProfile.css";
 
 export default function UserProfile() {
 	const [error, setError] = useState("");
@@ -22,35 +23,41 @@ export default function UserProfile() {
 	return (
 		<>
 			<Navbar></Navbar>
-			<Card className="profile-card">
-				<Card.Body>
-					<div className="profile-picture">
-						{/* Replace with actual profile picture if available */}
-						<img src="/default-avatar.png" alt="Profile" />
-					</div>
-					<h2 className="text-center mb-4">Profile</h2>
-					{error && <Alert variant="danger">{error}</Alert>}
-					<strong>Email: </strong> {currentUser.email}
-					{/* Add more user details here */}
-					<Link to="/update-profile" className="btn btn-primary w-100 mt-3">
-						Update Profile
-					</Link>
-					<Link to="/change-password" className="btn btn-secondary w-100 mt-3">
-						Change Password
-					</Link>
-					<Button
-						variant="danger"
-						className="w-100 mt-3"
-						// onClick={handleDeleteAccount}
-					>
-						Delete Account
-					</Button>
-				</Card.Body>
-			</Card>
-			<div className="w-100 text-center mt-2">
-				<Button variant="link" onClick={handleLogout}>
-					Log Out
-				</Button>
+			<div className="container">
+				<Row className="justify-content-center">
+					<Col md={6} className="profile-card">
+						<div className="profile-picture">
+							{/* Replace with actual profile picture if available */}
+							<img src="/user-profile-default.png" alt="Profile" />
+						</div>
+						<h2 className="text-center mb-4">Profile</h2>
+						{error && <Alert variant="danger">{error}</Alert>}
+						<div className="text-center">
+							<strong className="user-details">Email: </strong>{" "}
+							{currentUser.email}
+						</div>
+						{/* Add more user details here */}
+						<div className="button-container">
+							<Link to="/update-profile" className="btn btn-primary w-100 mt-3">
+								Update Profile
+							</Link>
+						</div>
+						<div className="button-container">
+							<Button
+								variant="danger"
+								className="w-100 mt-3"
+								// onClick={handleDeleteAccount}
+							>
+								Delete Account
+							</Button>
+						</div>
+						<div className="w-100 text-center mt-2">
+							<Button variant="link" onClick={handleLogout}>
+								Log Out
+							</Button>
+						</div>
+					</Col>
+				</Row>
 			</div>
 		</>
 	);
