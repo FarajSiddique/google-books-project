@@ -1,7 +1,7 @@
 import React from "react";
-import Navbar from "./navbar";
-import FictionCarousel from "./Carousels/FictionCarousel";
-import NonFictionCarousel from "./Carousels/NonFictionCarousel";
+import Navbar from "../navbar/navbar";
+import FictionCarousel from "../Carousels/FictionCarousel";
+import NonFictionCarousel from "../Carousels/NonFictionCarousel";
 import { Container } from "react-bootstrap";
 
 export default function Dashboard() {

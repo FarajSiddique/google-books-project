@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
-import { fetchTop5BestSellingBooksNonFiction } from "../NYTBooks";
+import { fetchTop5BestSellingBooksNonFiction } from "../APIServices/NYTBooks";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./Carousel.css";

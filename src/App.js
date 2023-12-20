@@ -1,17 +1,17 @@
 import React from "react";
-import Signup from "./Signup";
-import AuthProvider from "../contexts/AuthContext";
+import Signup from "./components/Signup/Signup.js";
+import AuthProvider from "./contexts/AuthContext.js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Dashboard from "./Dashboard";
-import Login from "./Login";
-import PrivateRoute from "./PrivateRoute";
-import ForgotPassword from "./ForgotPassword";
-import UpdateProfile from "./UpdateProfile";
-import UserProfile from "./UserProfile";
-import Bookshelf from "./Bookshelf";
-import SearchResultPage from "./SearchResultsPage";
-import BookDetail from "./BookDetail";
-import BookDetailNYT from "./BookDetailNYT";
+import Dashboard from "./components/Dashboard/Dashboard.js";
+import Login from "./components/Login/Login.js";
+import PrivateRoute from "./components/PrivateRoute.js";
+import ForgotPassword from "./components/ForgotPassword/ForgotPassword.js";
+import UpdateProfile from "./components/UpdateProfile/UpdateProfile.js";
+import UserProfile from "./components/UserProfile/UserProfile.js";
+import Bookshelf from "./components/Bookshelf/Bookshelf.js";
+import SearchResultPage from "./components/SearchResultsPage/SearchResultsPage.js";
+import BookDetail from "./components/BookDetail/BookDetail.js";
+import BookDetailNYT from "./components/BookDetail/BookDetailNYT.js";
 
 function App() {
 	return (

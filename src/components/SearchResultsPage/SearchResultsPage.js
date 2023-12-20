@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "./navbar";
+import Navbar from "../navbar/navbar";
 import { Link, useParams } from "react-router-dom";
-import { searchBooks } from "./GoogleBooks";
+import { searchBooks } from "../APIServices/GoogleBooks";
 import { Card, Col, Row } from "react-bootstrap";
 import "./SearchResultsPage.css";
 

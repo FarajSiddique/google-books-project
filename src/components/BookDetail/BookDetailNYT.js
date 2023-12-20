@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchBookDetailsByISBN } from "./GoogleBooks";
-import NavbarComponent from "./navbar"; // renamed to avoid conflict with React-Bootstrap's Navbar
+import { fetchBookDetailsByISBN } from "../APIServices/GoogleBooks";
+import NavbarComponent from "../navbar/navbar"; // renamed to avoid conflict with React-Bootstrap's Navbar
 import { Container, Row, Col, Card, Spinner } from "react-bootstrap";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 

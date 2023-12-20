@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getBookDetail } from "./GoogleBooks";
-import NavbarComponent from "./navbar"; // renamed to avoid conflict with React-Bootstrap's Navbar
+import { getBookDetail } from "../APIServices/GoogleBooks";
+import NavbarComponent from "../navbar/navbar"; // renamed to avoid conflict with React-Bootstrap's Navbar
 import { Container, Row, Col, Card, Spinner } from "react-bootstrap";
 
 const BookDetail = () => {
