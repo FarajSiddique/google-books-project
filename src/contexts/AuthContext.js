@@ -8,6 +8,7 @@ import {
 	sendPasswordResetEmail,
 	updateEmail,
 	updatePassword,
+	updateProfile,
 } from "firebase/auth";
 
 const AuthContext = React.createContext();
@@ -28,8 +29,8 @@ export default function AuthProvider({ children }) {
 		return signInWithEmailAndPassword(auth, email, password);
 	}
 
-	function logout(auth) {
-		return signOut;
+	function logout() {
+		return signOut(auth); // Corrected this line
 	}
 
 	function resetPassword(email) {
@@ -37,11 +38,15 @@ export default function AuthProvider({ children }) {
 	}
 
 	function updateNewEmail(email) {
-		return updateEmail(currentUser, email);
+		return updateEmail(currentUser, email); // Ensure currentUser is up-to-date
 	}
 
 	function updateNewPassword(password) {
-		return updatePassword(currentUser, password);
+		return updatePassword(currentUser, password); // Ensure currentUser is up-to-date
+	}
+
+	function updateNewProfile(displayName, photoURL) {
+		return updateProfile(currentUser, { displayName, photoURL }); // Corrected this line
 	}
 
 	useEffect(() => {
@@ -61,7 +66,9 @@ export default function AuthProvider({ children }) {
 		resetPassword,
 		updateNewEmail,
 		updateNewPassword,
+		updateNewProfile,
 	};
+
 	return (
 		<AuthContext.Provider value={value}>
 			{!loading && children}

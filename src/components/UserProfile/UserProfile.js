@@ -4,6 +4,7 @@ import { Row, Button, Alert, Col } from "react-bootstrap";
 import { useAuth } from "../../contexts/AuthContext";
 import Navbar from "../navbar/navbar";
 import "./UserProfile.css";
+import UserProfilePicture from "./UserProfilePicture";
 
 export default function UserProfile() {
 	const [error, setError] = useState("");
@@ -26,11 +27,8 @@ export default function UserProfile() {
 			<div className="container">
 				<Row className="justify-content-center">
 					<Col md={6} className="profile-card">
-						<div className="profile-picture">
-							{/* Replace with actual profile picture if available */}
-							<img src="/user-profile-default.png" alt="Profile" />
-						</div>
 						<h2 className="text-center mb-4">Profile</h2>
+						<UserProfilePicture />
 						{error && <Alert variant="danger">{error}</Alert>}
 						<div className="text-center">
 							<strong className="user-details">Email: </strong>{" "}
