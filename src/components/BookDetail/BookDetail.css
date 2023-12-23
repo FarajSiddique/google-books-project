@@ -1,0 +1,50 @@
+.book-detail-container {
+	background-color: #f8f9fa;
+	padding: 20px;
+	border-radius: 10px;
+}
+
+.book-cover {
+	width: 100%;
+	height: auto;
+}
+
+.book-detail-card {
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 10px;
+}
+
+.book-title {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.book-authors {
+	font-size: 18px;
+	color: #6c757d;
+}
+
+.book-description {
+	font-size: 16px;
+	color: #343a40;
+}
+
+.book-link {
+	color: #007bff;
+	text-decoration: none;
+}
+
+.bookshelf-button {
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.bookshelf-button:hover {
+	background-color: #0056b3;
+}
