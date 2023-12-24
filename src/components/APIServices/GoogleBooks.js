@@ -1,11 +1,13 @@
 import axios from "axios";
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
-export const searchBooks = async (query) => {
+export const searchBooks = async (query, page = 1, limit = 40) => {
 	try {
 		const response = await axios.get(`${BACKEND_URL}/api/book/search`, {
 			params: {
 				q: query,
+				page: page,
+				limit: limit,
 			},
 		});
 		return response.data;

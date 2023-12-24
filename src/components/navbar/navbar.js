@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./navbar.css";
 import {
 	MDBNavbar,
 	MDBContainer,
@@ -25,6 +26,9 @@ export default function App() {
 
 	const handleSearch = (event) => {
 		event.preventDefault();
+		if (query === "") {
+			return;
+		}
 		navigate(`/search/${query}`);
 	};
 
@@ -43,25 +47,33 @@ export default function App() {
 					>
 						<MDBIcon icon="bars" fas />
 					</MDBNavbarToggler>
-					<MDBNavbarBrand href="/">BookBuddy 📚</MDBNavbarBrand>
+					<MDBNavbarBrand className="navbar-brand" href="/">
+						BookBuddy 📚
+					</MDBNavbarBrand>
 					<MDBCollapse navbar show={showNavNoTogglerThird}>
-						<MDBNavbarNav className="mr-auto mb-2 mb-lg-0">
+						<MDBNavbarNav className="navbar-nav mr-auto mb-2 mb-lg-0">
 							<MDBNavbarItem>
-								<MDBNavbarLink active aria-current="page" href="/user-profile">
+								<MDBNavbarLink
+									className="navbar-link active"
+									aria-current="page"
+									href="/user-profile"
+								>
 									Profile
 								</MDBNavbarLink>
 							</MDBNavbarItem>
 							<MDBNavbarItem>
-								<MDBNavbarLink href="/bookshelf">Bookshelf</MDBNavbarLink>
+								<MDBNavbarLink className="navbar-link" href="/bookshelf">
+									Bookshelf
+								</MDBNavbarLink>
 							</MDBNavbarItem>
 						</MDBNavbarNav>
 						<MDBInputGroup
 							tag="form"
-							className="d-flex w-auto"
+							className="d-flex w-auto search-form"
 							onSubmit={handleSearch}
 						>
 							<input
-								className="form-control"
+								className="form-control search-input"
 								placeholder="Search for books"
 								aria-label="Search"
 								type="Search"

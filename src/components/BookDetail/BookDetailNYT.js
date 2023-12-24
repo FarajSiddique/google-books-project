@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchBookDetailsByISBN } from "../APIServices/GoogleBooks";
 import NavbarComponent from "../navbar/navbar"; // renamed to avoid conflict with React-Bootstrap's Navbar
-import { Container, Row, Col, Card, Spinner } from "react-bootstrap";
+import { Container, Row, Col, Card, Spinner, Button } from "react-bootstrap";
 import { useAuth } from "../../contexts/AuthContext";
+import "./BookDetail.css";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -79,30 +80,43 @@ const BookDetailNYT = () => {
 	return (
 		<>
 			<NavbarComponent />
-			<Container className="mt-5">
+			<Container className="mt-5 book-detail-container">
 				<Row>
 					<Col md={4}>
 						<Card.Img
+							className="book-cover"
 							variant="top"
 							src={book.volumeInfo.imageLinks?.thumbnail}
 							alt={book.volumeInfo.title}
 						/>
 					</Col>
 					<Col md={8}>
-						<Card>
+						<Card className="book-detail-card">
 							<Card.Body>
-								<Card.Title>{book.volumeInfo.title}</Card.Title>
-								<Card.Text>{book.volumeInfo.authors}</Card.Text>
-								<Card.Text>{book.volumeInfo.description}</Card.Text>
+								<Card.Title className="book-title">
+									{book.volumeInfo.title}
+								</Card.Title>
+								<Card.Text className="book-authors">
+									{book.volumeInfo.authors}
+								</Card.Text>
+								<Card.Text className="book-description">
+									{book.volumeInfo.description}
+								</Card.Text>
 								<Card.Text>
-									<a href={book.volumeInfo.canonicalVolumeLink}>
+									<a
+										className="book-link"
+										href={book.volumeInfo.canonicalVolumeLink}
+									>
 										Get this Book!
 									</a>
 								</Card.Text>
 								<Card.Text>
-									<button onClick={handleAddToBookshelf}>
+									<Button
+										className="bookshelf-button"
+										onClick={handleAddToBookshelf}
+									>
 										Add to Bookshelf!
-									</button>
+									</Button>
 								</Card.Text>
 							</Card.Body>
 						</Card>

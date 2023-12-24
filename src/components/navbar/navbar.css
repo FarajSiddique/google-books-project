@@ -1,0 +1,26 @@
+.navbar-brand {
+	font-size: 24px;
+	font-weight: bold;
+	color: #007bff !important;
+}
+
+.navbar-brand:hover {
+	color: #0056b3 !important; /* Change this to the color you want when hovered */
+}
+
+.navbar-nav {
+	margin-right: auto;
+}
+
+.navbar-link {
+	color: #343a40 !important;
+	text-decoration: none;
+}
+
+.search-form {
+	margin-left: auto;
+}
+
+.search-input {
+	border-radius: 5px;
+}

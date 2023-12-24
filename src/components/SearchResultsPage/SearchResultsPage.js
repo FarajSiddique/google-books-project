@@ -2,26 +2,38 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../navbar/navbar";
 import { Link, useParams } from "react-router-dom";
 import { searchBooks } from "../APIServices/GoogleBooks";
-import { Card, Col, Row } from "react-bootstrap";
+import { Card, Col, Row, Button } from "react-bootstrap";
 import "./SearchResultsPage.css";
 
 const SearchResultPage = () => {
 	const { query } = useParams();
 	const [books, setBooks] = useState([]);
+	const [page, setPage] = useState(1);
+	const [isLastPage, setIsLastPage] = useState(false);
 
+	// Reset page to 1 whenever the query changes
+	useEffect(() => {
+		setPage(1);
+	}, [query]);
+
+	// Fetch data whenever the query or page changes
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const data = await searchBooks(query);
+				const data = await searchBooks(query, page);
 				setBooks(data.items || []);
-				console.log(data);
+				if (data.items.length < 40) {
+					setIsLastPage(true);
+				} else {
+					setIsLastPage(false);
+				}
 			} catch (error) {
 				console.error("Error fetching books", error);
 			}
 		};
 
 		fetchData();
-	}, [query]);
+	}, [query, page]);
 
 	return (
 		<>
@@ -58,6 +70,22 @@ const SearchResultPage = () => {
 							<p>No Books found.</p>
 						)}
 					</Row>
+					<div className="pagination-buttons">
+						<Button
+							className="pagination-button"
+							onClick={() => setPage(page - 1)}
+							disabled={page === 1}
+						>
+							Previous Page
+						</Button>
+						<Button
+							className="pagination-button"
+							onClick={() => setPage(page + 1)}
+							disabled={isLastPage}
+						>
+							Next Page
+						</Button>
+					</div>
 				</div>
 			</div>
 		</>
