@@ -42,3 +42,15 @@
 	font-size: 1.2rem; /* Slightly larger text */
 	margin-top: 10px; /* Space between title and image */
 }
+
+.alice-carousel__dots-item:not(.__custom) {
+	width: 10px;
+	height: 10px;
+}
+
+.alice-carousel__prev-btn,
+.alice-carousel__next-btn {
+	border: none;
+	color: #4b4b4b;
+	font-size: 2rem;
+}
