@@ -8,7 +8,7 @@ import PrivateRoute from "./components/PrivateRoute.js";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword.js";
 import UpdateProfile from "./components/UpdateProfile/UpdateProfile.js";
 import UserProfile from "./components/UserProfile/UserProfile.js";
-import Bookshelf from "./components/Bookshelf/Bookshelf.js";
+import BookshelfPage from "./components/Bookshelf/Bookshelf.js";
 import SearchResultPage from "./components/SearchResultsPage/SearchResultsPage.js";
 import BookDetail from "./components/BookDetail/BookDetail.js";
 import BookDetailNYT from "./components/BookDetail/BookDetailNYT.js";
@@ -47,7 +47,7 @@ function App() {
 						path="/bookshelf"
 						element={
 							<PrivateRoute>
-								<Bookshelf />
+								<BookshelfPage />
 							</PrivateRoute>
 						}
 					/>

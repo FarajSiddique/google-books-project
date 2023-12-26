@@ -30,7 +30,7 @@ const BookDetailNYT = () => {
 				throw new Error("You must be logged in to add books to your bookshelf");
 			}
 
-			const isbn = book.volumeInfo.industryIdentifiers[1].identifier;
+			const isbn = book.volumeInfo.industryIdentifiers[0].identifier;
 
 			const response = await fetch(`${BACKEND_URL}/api/bookshelf/add`, {
 				method: "POST",
